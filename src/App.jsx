@@ -1,7 +1,43 @@
-import CategoriesContainer from "./components/categories-container/categories-container.component";
+import { Route, Routes } from "react-router-dom";
+import NavBar from "./components/navigation-bar/navigation-bar.component";
+import Home from "./routes/home/home.component";
 
 const App = () => {
-  return <CategoriesContainer />;
+  const categories = [
+    {
+      id: 1,
+      title: "Hats",
+      imageUrl: "https://i.ibb.co/cvpntL1/hats.png",
+    },
+    {
+      id: 2,
+      title: "Jackets",
+      imageUrl: "https://i.ibb.co/px2tCc3/jackets.png",
+    },
+    {
+      id: 3,
+      title: "Sneakers",
+      imageUrl: "https://i.ibb.co/0jqHpnp/sneakers.png",
+    },
+    {
+      id: 4,
+      title: "Womens",
+      imageUrl: "https://i.ibb.co/GCCdy8t/womens.png",
+    },
+    {
+      id: 5,
+      title: "Mens",
+      imageUrl: "https://i.ibb.co/R70vBrQ/men.png",
+    },
+  ];
+
+  return (
+    <Routes>
+      <Route path="/" element={<NavBar />}>
+        <Route index element={<Home categories={categories} />} />
+      </Route>
+    </Routes>
+  );
 };
 
 export default App;
