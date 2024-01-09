@@ -1,0 +1,18 @@
+.logIn-container {
+  display: flex;
+  justify-content: space-around;
+
+  .logIn-form-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  p {
+    text-align: center;
+  }
+
+  button {
+    margin: 10px;
+  }
+}
