@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import "./logIn.styles.scss";
 import FormInput from "../../components/form-input/form-input.component";
+import { Link } from "react-router-dom";
+import {
+  registerFromAuth,
+  signInAuthUserWithEmailAndPassword,
+  signInWithGooglePopUp,
+} from "../../utils/firebase/firebase.utils";
 
 const defaultLogInFields = {
-  userName: "",
+  userEmail: "",
   userPassword: "",
 };
 
@@ -15,35 +21,58 @@ const LogIn = () => {
     setFormFields({ ...formFields, [name]: value });
   };
 
-  const handleSubmitForm = (event) => {
+  const handleSubmitForm = async (event) => {
     event.preventDefault();
-    console.log(formFields);
+    const { userEmail, userPassword } = formFields;
+    const { user } = await signInAuthUserWithEmailAndPassword(
+      userEmail,
+      userPassword
+    );
+    console.log(user);
+  };
+
+  const signInGoogleUser = async () => {
+    const { user } = await signInWithGooglePopUp();
+    console.log(user);
   };
 
   return (
     <div className="logIn-container">
-      <div className="logIn-img-container">{/*Image*/}</div>
+      <div className="logIn-img-container"></div>
       <div className="logIn-form-container">
-        <h1>Welcome Back!</h1>
-        <p>Please enter your details</p>
-        <form onSubmit={handleSubmitForm}>
-          <FormInput
-            label="User"
-            type="text"
-            required
-            name="userName"
-            onChange={handleChange}
-          />
-          <FormInput
-            label="Password"
-            type="password"
-            required
-            name="userPassword"
-            onChange={handleChange}
-          />
-          <button type="submit">Log In</button>
-          <button type="button">Log In with Google</button>
-        </form>
+        <div className="logIn-form-container-inner">
+          <h1>Welcome Back!</h1>
+          <p>Please enter your details</p>
+          <form onSubmit={handleSubmitForm}>
+            <FormInput
+              label="Email"
+              type="text"
+              required
+              name="userEmail"
+              onChange={handleChange}
+            />
+            <FormInput
+              label="Password"
+              type="password"
+              required
+              name="userPassword"
+              onChange={handleChange}
+            />
+            <Link to="/register">Dont have an account?</Link>
+            <div className="logIn-buttons-container">
+              <button type="submit" className="button-primary">
+                Log In
+              </button>
+              <button
+                type="button"
+                className="button-google"
+                onClick={signInGoogleUser}
+              >
+                Log In with Google
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );
