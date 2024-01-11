@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./logIn.styles.scss";
 import FormInput from "../../components/form-input/form-input.component";
 import { Link } from "react-router-dom";
 import {
-  registerFromAuth,
   signInAuthUserWithEmailAndPassword,
   signInWithGooglePopUp,
 } from "../../utils/firebase/firebase.utils";
@@ -28,12 +27,10 @@ const LogIn = () => {
       userEmail,
       userPassword
     );
-    console.log(user);
   };
 
   const signInGoogleUser = async () => {
     const { user } = await signInWithGooglePopUp();
-    console.log(user);
   };
 
   return (

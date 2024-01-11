@@ -26,7 +26,6 @@ const Register = () => {
   const registerGoogleUser = async () => {
     const { user } = await signInWithGooglePopUp();
     const userDocRef = await registerFromAuth(user);
-    console.log(userDocRef);
   };
 
   const handleSubmitForm = async (event) => {
@@ -41,7 +40,6 @@ const Register = () => {
         userPassword
       );
       const userDocRef = await registerFromAuth(user, { displayName });
-      console.log(userDocRef);
     }
   };
 
