@@ -7,10 +7,11 @@ import "./navigation-bar.styles.scss";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/user.context";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
+import ShopIcon from "../shop-icon/shop-icon.component";
+import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 
 const NavBar = () => {
   const { currentUser, setCurrentUser } = useContext(UserContext);
-  console.log(currentUser);
 
   const logOutHandler = async () => {
     await signOutUser();
@@ -39,7 +40,9 @@ const NavBar = () => {
               LOG OUT
             </Link>
           )}
+          <ShopIcon />
         </div>
+        <CartDropdown />
       </div>
       <Outlet />
     </Fragment>

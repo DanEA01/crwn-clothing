@@ -3,6 +3,7 @@ import NavBar from "./components/navigation-bar/navigation-bar.component";
 import Home from "./routes/home/home.component";
 import LogIn from "./routes/logIn/logIn.component";
 import Register from "./routes/register/register.component";
+import Shop from "./routes/shop/shop.component";
 
 const App = () => {
   const categories = [
@@ -39,6 +40,7 @@ const App = () => {
         <Route index element={<Home categories={categories} />} />
         <Route path="signIn" element={<LogIn />} />
         <Route path="register" element={<Register />} />
+        <Route path="shop" element={<Shop />} />
       </Route>
     </Routes>
   );

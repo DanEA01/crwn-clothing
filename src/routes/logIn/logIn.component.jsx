@@ -23,14 +23,11 @@ const LogIn = () => {
   const handleSubmitForm = async (event) => {
     event.preventDefault();
     const { userEmail, userPassword } = formFields;
-    const { user } = await signInAuthUserWithEmailAndPassword(
-      userEmail,
-      userPassword
-    );
+    await signInAuthUserWithEmailAndPassword(userEmail, userPassword);
   };
 
   const signInGoogleUser = async () => {
-    const { user } = await signInWithGooglePopUp();
+    await signInWithGooglePopUp();
   };
 
   return (
